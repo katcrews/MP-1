@@ -1,15 +1,39 @@
-const startBtn=document.getElementById('start');
+const startBtn=document.getElementById('start_btn');
+const questionCont=document.getElementById('question-cont');
+const nextBtn=document.getElementById('next_btn');
 const questions=document.getElementById('questions');
-const choices=document.getElementById('choices');
-const result=document.getElementById('result');
+const choices=document.getElementById('chose-btn');
 const finalResult=document.getElementById('final_result');
-const replay=document.getElementById('replay');
-const replayBtn=document.getElementById('replay_btn');
+//const replay=document.getElementById('replay');
 
-startBtn.addEventListener('click', function(){
-   
+startBtn.addEventListener('click', playGame);
+nextBtn.addEventListener('click', nextButton);
+choices.addEventListener('click',chooseButton);
 
-})
+//start game, button disappears after click
+function playGame(){
+    console.log('start');
+    startBtn.classList.add('hide');
+    nextBtn.classList.remove('hide');
+    questionCont.classList.remove('hide');
+    //nextButton();
+}
+
+//appears after start button is gone, loops through array of questions
+function nextButton(){
+    console.log('next');
+    nextBtn.classList.remove('hide')
+    
+}
+
+//user chooses answer, green=true red=false
+function chooseButton(){
+    console.log('choose');
+}
+
+//function to announce results
+
+
 
 //6 questions, store in array
 let currentQuestion = 0;

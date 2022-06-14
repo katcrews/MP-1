@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    
+
     <title>Hawaii Trivia</title>
 </head>
+
 <body>
+
     <div class="container">
         <h1 class="title">Test your knowledge of Hawaii</h1>
-        <button class="start">Ho'omaka (Start)</button>
+        <div id="question-cont" class="hide">
+            <div id="questions">Question</div>
+            <div id="chose-btn" class="btn-grid">
+                <button type="button" class="btn">Answer 1</button>
+                <button type="button" class="btn">Answer 2</button>
+                <button type="button" class="btn">Answer 3</button>
+                <button type="button" class="btn">Answer 4</button>
+            </div>
+        </div>
+        <div class="control-panel">
+            <button class="start" id="start_btn">Ho'omaka (Start)</button>
+            <button class="next btn hide" id="next_btn">Next</button>
+            <!--<button class="replay_btn">Hana hou! (Try again)</button> maybe work on later if time-->
+        </div>
+        <div class="final_result"></div>
     </div>
-   <div class="questions"></div>
-   <div class="choices"></div>
-   <div class="result"></div>
-   <div class="final_result"></div>
-   <div class="replay">
-    <button class="replay_btn">Hana hou! (Try again)</button>
-   </div>
-    
-     
 </body>
-<script src="scripts.js"></script> 
-<script src="questions.js"></script>
+<script src="scripts.js"></script>
+
 </html>
