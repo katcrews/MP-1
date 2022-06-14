@@ -2,111 +2,113 @@ const startBtn=document.getElementById('start_btn');
 const questionCont=document.getElementById('question-cont');
 const nextBtn=document.getElementById('next_btn');
 const questions=document.getElementById('questions');
-const choices=document.getElementById('chose-btn');
+const choice=document.getElementById('chose-btn');
 const finalResult=document.getElementById('final_result');
 //const replay=document.getElementById('replay');
+let score = 0;
+let scoreCount = 0;
 
 startBtn.addEventListener('click', playGame);
 nextBtn.addEventListener('click', nextButton);
-choices.addEventListener('click',chooseButton);
+//choices.addEventListener('click',chooseButton);
 
-//start game, button disappears after click
+//starts game, button disappears after click
 function playGame(){
     console.log('start');
     startBtn.classList.add('hide');
     nextBtn.classList.remove('hide');
     questionCont.classList.remove('hide');
-    //nextButton();
-}
+    questionCounter = 0;
+    score = 0;
+    choices = [...question];
+    console.log(question);
+   // nextButton()
+};
 
-//appears after start button is gone, loops through array of questions
+//appears after start button is clicked, loops through array of questions in random order
 function nextButton(){
-    console.log('next');
-    nextBtn.classList.remove('hide')
+    const questionIndex = Math.floor(Math.random()*question.length);
+    currentQuestion = question[questionIndex];
+    questions.innerText = currentQuestion.question;
+    //answers
+    // question.answers.forEach(answer => {
+    //     const button = document.createElement('button');
+    //     button.innerText = answer.text;
+    //     button.classList.add('btn');
+    //     if (answer.correct){
+    //         button.dataset.correct = answer.correct;
+    //     }
+    //     button.addEventListener('click',chooseButton)
+    //     answerButtonsElement.appendChild(button);
+   // })
+//    question.forEach(answer =>{
+//     const button = question.dataset['text'];
+//     answer.innerText = currentQuestion['answer'];
+//    })
     
-}
+};
+
 
 //user chooses answer, green=true red=false
 function chooseButton(){
-    console.log('choose');
-}
+    
+};
 
 //function to announce results
 
 
 
 //6 questions, store in array
-let currentQuestion = 0;
-var score = 0;
+let currentQuestion = {};
+let correctAnswer = true;
+
+let choices = [];
 let question = [
     {
-        number: 1,
         question: 'The pineapple is an indigenous fruit to the Hawaiian islands, originally called malanapua.',
-        answer: "A'ole (No)",
-        choices:
-            [
-                "'Ae (Yes)",
-                "A'ole (No)"
-            ]
+        answers: [
+            {text:"'Ae (Yes)", correct: false},
+            {text:"A'ole (No)", correct: true}
+        ]            
     },
-    {
-        number: 2,
-        question: 'Traditional hula dances:',
-        answer: "tells stories using hands and body movements",
-        choices:
-            [
-            "tells stories using hands and body movements",
-	        "uses hip movements to do story telling",
-	        "involves slapping the chest and thighs, usually accompanied by a haka",
-	        "was invented in 1802"
-            ]   
-    },
-    {
-        number: 3,
-        question: "The 'ukulele was invented by the:",
-        answer: "Portuguese",
-        choices:
-            [
-            "Hawaiians",
-	        "Filipinos",
-	        "Portuguese",
-	        "Brittish"
-            ]
-    },
-    {
-       number: 4,
-        question: 'How many islands are located in Hawaii?',
-        answer: "132",
-        choices:
-            [
-            "132",
-	        "8",
-	        "4",
-	        "6"
-            ] 
-    },    
-    {
-        number: 5,
-        question: 'Mahalo means:',
-        answer: "thank you",
-        choices:
-                [
-                "hello",
-                "goodbye",
-                "trash",
-                "thank you"
-                ]
-    },
-    {
-        number: 6,
-        question: 'Pele, the goddess of fire and volcanoes has been known to manifest around the islands as:',
-        answer: "an old woman",
-        choices:
-            [
-            "a white dog",
-            "an old woman",
-            "a wild boar",
-            "a red bird"
-            ]
-    }      
+    // {
+    //     question:'Traditional hula dances:',
+    //     choice:"tells stories using hands and body movements",
+    //     choice:"uses hip movements to do story telling",
+    //     choice:"involves slapping the chest and thighs, usually accompanied by a haka",
+    //     choice:"was invented in 1802",
+    //     answer: 1
+    // },
+    // {
+    //     question: "The 'ukulele was invented by the:",
+    //     choice:"Hawaiians",
+    //     choice:"Filipinos",
+    //     choice:"Portuguese",
+    //     choice:"Brittish",
+    //     answer: 3
+    // },
+    // {
+    //     question: 'How many islands are located in Hawaii?',
+    //     choice:"132",
+    //     choice: "8",
+    //     choice:"4",
+    //     choice:"6",
+    //     answer: 1
+    // },    
+    // {
+    //     question: 'Mahalo means:',
+    //     choice:"hello",
+    //     choice:"goodbye",
+    //     choice:"trash",
+    //     choice:"thank you",
+    //     answer:4
+    // },
+    // {
+    //     question: 'Pele, the goddess of fire and volcanoes has been known to manifest around the islands as:',
+    //     choice:"a white dog",
+    //     choice:"an old woman",
+    //     choice:"a wild boar",
+    //     choice:"a red bird",
+    //     answer: 2
+    // }      
 ]
