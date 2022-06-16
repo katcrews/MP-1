@@ -30,7 +30,7 @@ body {
 }
 
 #question-cont {
-    background: rgba(52, 130, 158, 0.3);
+    /*background: rgba(52, 130, 158, 0.3);*/
     position: absolute;
     top: 30%;
     left: 14%;
