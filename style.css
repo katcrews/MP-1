@@ -29,7 +29,7 @@ body {
     border-radius: 12px;
 }
 
-#question-cont {
+.questCont {
     /*background: rgba(52, 130, 158, 0.3);*/
     position: absolute;
     top: 30%;
