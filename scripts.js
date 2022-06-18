@@ -1,119 +1,169 @@
-const question = document.getElementById('question');
-const choices = Array.from(document.getElementById('choice-text'));
 const startBtn = document.getElementById('start_btn');
 const nextBtn = document.getElementById('next_btn');
 const questionCont = document.getElementById('question-cont');
-const maxQuestions = 6;
+const answer = document.getElementsByClassName('btn');
+startBtn.addEventListener('click', playGame);
 
-let score = 0;
-//let scoreCount = 0;
-let currentQuestion = {};
-let acceptingAnswers = false;
-let correctAnswer = true;
-let availableQuestions = [];
+let shuffle, QuestionsIndex;
 let questionCounter = 0;
 
-const questions = [
-    {
-        question: 'The pineapple is an indigenous fruit to the Hawaiian islands, originally called malanapua.',
-        choice1: "'Ae (Yes)",
-        choice2: "A'ole (No)",
-        answer: 2,
-    },
-    {
-        question: 'Traditional hula dances:',
-        choice1: "tells stories using hands and body movements",
-        choice2: "uses hip movements to do story telling",
-        choice3: "involves slapping the chest and thighs, usually accompanied by a haka",
-        choice4: "was invented in 1802",
-        answer: 1
-    },
-    {
-        question: "The 'ukulele was invented by the:",
-        choice1: "Hawaiians",
-        choice2: "Filipinos",
-        choice3: "Portuguese",
-        choice4: "Brittish",
-        answer: 3,
-    },
-    {
-        question: 'How many islands are located in Hawaii?',
-        choice1: "132",
-        choice2: "8",
-        choice3: "4",
-        choice4: "6",
-        answer: 1,
-    },
-    {
-        question: 'Mahalo means:',
-        choice1: "hello",
-        choice2: "goodbye",
-        choice3: "trash",
-        choice4: "thank you",
-        answer: 4,
-    },
-    {
-        question: 'Pele, the goddess of fire and volcanoes has been known to manifest around the islands as:',
-        choice1: "a white dog",
-        choice2: "an old woman",
-        choice3: "a wild boar",
-        choice4: "a red bird",
-        answer: 2,
-    }
+const Questions = [{
+    id: 0,
+    q: 'What fruit is indigenous to Hawaii?',
+    a: [
+        { text: "hala kahiki or the pineapple", isCorrect: false },
+        { text: "hala or the screwpine", isCorrect: true },
+        { text: "lilikoi or the passionfruit", isCorrect: false },
+        { text: "manako or the mango", isCorrect: false },
+    ]
+},
+{
+    id: 1,
+    q: 'Traditional hula dances:',
+    a: [
+        { text: "tells stories using hands and body movements", isCorrect: true },
+        { text: "uses hip movements to do story telling", isCorrect: false },
+        { text: "involves slapping the chest and thighs, usually accompanied by a haka", isCorrect: false },
+        { text: "was invented in 1802", isCorrect: false },
+    ]
+    
+},
+{
+    id: 2,
+    q: "The 'ukulele was invented by the:",
+    a: [
+        { text: "Hawaiians", isCorrect: false },
+        { text: "Filipinos", isCorrect: false },
+        { text: "Portuguese", isCorrect: true },
+        { text: "British", isCorrect: false },
+    ]
+    
+},
+{
+    id: 3,
+    q: 'How many islands are located in Hawaii?',
+    a: [
+        { text: "132", isCorrect: true },
+        { text: "8", isCorrect: false },
+        { text: "4", isCorrect: false },
+        { text: "6", isCorrect: false },
+    ]
+    
+},
+{
+    id: 4,
+    q: 'Mahalo means:',
+    a: [
+        { text: "hello", isCorrect: false },
+        { text: "goodbye", isCorrect: false },
+        { text: "trash", isCorrect: false },
+        { text: "thank you", isCorrect: true },
+    ]
+    
+},
+{
+    id: 5,
+    q: 'Pele, the goddess of fire and volcanoes has been known to manifest around the islands as:',
+    a: [
+        { text: "a white dog", isCorrect: false },
+        { text: "an old woman", isCorrect: true },
+        { text: "a wild boar", isCorrect: false },
+        { text: "a red bird", isCorrect: false },
+    ]
+    
+},
 ]
-startBtn.addEventListener('click', playGame);
-nextBtn.addEventListener('click', nextButton);
+var start = true;
 
-//starts game, button disappears after click
 function playGame() {
     startBtn.classList.add('hide');
     nextBtn.classList.remove('hide');
     questionCont.classList.remove('hide');
-    questionCounter = 0;
+    shuffle = Questions.sort(()=> Math.random() * Questions.length);
+    QuestionsIndex = 0;
     score = 0;
-    availableQuestions = [...questions];
-    nextButton()
+    questionCounter = 0;
 };
 
-//appears after start button is clicked, loops through array of questions in random order
+function iterate(id) {
+    
+    const question = document.getElementById("question");
+    
+    question.innerText = Questions[id].q;
 
-function nextButton() {
-    if (availableQuestions.length === 0 || questionCounter < availableQuestions.length >= maxQuestions) {
-        return score();
-    };
-    questionCounter++;
-    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
-    showQuestion = availableQuestions[questionIndex];
-    question.innerText = showQuestion.question;
+    const op1 = document.getElementById('op1');
+    const op2 = document.getElementById('op2');
+    const op3 = document.getElementById('op3');
+    const op4 = document.getElementById('op4');
 
-    choices.forEach((choice) => {
-        const number = choice.dataset['number'];
-        choice.innerText = currentQuestion['choice' + number];
-    });
 
-    availableQuestions.splice(questionIndex, 1);
-    acceptingAnswers = true;
-};
+    op1.innerText = Questions[id].a[0].text;
+    op2.innerText = Questions[id].a[1].text;
+    op3.innerText = Questions[id].a[2].text;
+    op4.innerText = Questions[id].a[3].text;
 
-choices.forEach((choice) => {
-    choice.addEventListener('click', (e) => {
-        console.log(e.target);
-        acceptingAnswers = false;
-        const selectedChoice = e.target;
-        const selectedAnswer = selectedChoice.dataset['number'];
-        nextButton();
-    });
+    op1.value = Questions[id].a[0].isCorrect;
+    op2.value = Questions[id].a[1].isCorrect;
+    op3.value = Questions[id].a[2].isCorrect;
+    op4.value = Questions[id].a[3].isCorrect;
+
+    var selected = "";
+
+    op1.addEventListener("click", () => {
+        selected = op1.value;
+    })
+
+    // Show selection for op2
+    op2.addEventListener("click", () => {
+        selected = op2.value;
+    })
+
+    // Show selection for op3
+    op3.addEventListener("click", () => {
+        selected = op3.value;
+    })
+
+    // Show selection for op4
+    op4.addEventListener("click", () => {
+        selected = op4.value;
+    })
+
+
+    // const evaluate = document.getElementsByClassName("evaluate");
+
+   // Evaluate method
+    // evaluate[0].addEventListener("click", () => {
+    //     if (selected == "true") {
+    //         result[0].innerHTML = "True";
+    //         result[0].style.color = "green";
+    //     } else {
+    //         result[0].innerHTML = "False";
+    //         result[0].style.color = "red";
+    //     }
+    // })
+}
+
+if (start) {
+    iterate("0");    
+}
+
+
+var id = 0;
+  
+nextBtn.addEventListener("click", () => {
+    start = false;
+    questionCounter ++;
+    if (id < 5) {
+        id++;
+        iterate(id);
+    }
+}) 
+
+answer[0].addEventListener("click", () => {
+    if (selected =="true"){
+        answer[0].classList.add('correct');
+    } else {
+        answer[0].classList.add('wrong');
+    }
 });
-
-//answers
-
-
-//user chooses answer, green=true red=false
-
-
-//function to announce results
-
-
-
-//6 questions, store in array
 

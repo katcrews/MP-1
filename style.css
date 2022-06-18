@@ -78,11 +78,11 @@ body {
     transform: translateY(4px);
 }
 
-btn.correct{
+.btn.correct{
     background-color: rgb(9, 44, 9);
 }
 
-btn.wrong{
+.btn.wrong{
     background-color: rgb(156, 10, 10);
 
 }
