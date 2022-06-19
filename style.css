@@ -4,6 +4,11 @@
     font-family: "Helvetica Neue", "Helvetica";
 }
 
+:root{
+    --correct: green;
+    --wrong: red;
+}
+
 .hide {
     display: none;
 }
@@ -79,10 +84,23 @@ body {
 }
 
 .btn.correct{
-    background-color: rgb(9, 44, 9);
+   background-color: var(--correct);
 }
 
 .btn.wrong{
-    background-color: rgb(156, 10, 10);
+    background-color: var(--wrong);
+}
 
+.correct{
+    background-color: green;
+}
+
+.final_res{
+    position: absolute;
+    top: 40%;
+    left: 14%;
+    width: 80%;
+    padding-top: 30px;
+    margin: -25px 0 0 -25px;
+    font-size: 24px;
 }
