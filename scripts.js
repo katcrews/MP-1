@@ -2,8 +2,9 @@ const startBtn = document.getElementById('start_btn');
 const nextBtn = document.getElementById('next_btn');
 const questionCont = document.getElementById('question-cont');
 const answer = document.getElementById('choose');
-const btn = document.getElementsByClassName('btn');
+var btn = document.getElementsByClassName('btn');
 const resultsCont = document.getElementById('final_result');
+const replay = document.getElementById('replay');
 
 startBtn.addEventListener('click', playGame);
 
@@ -71,21 +72,19 @@ const Questions = [{
         { text: "a red bird"}
     ]
 },
-]
+];
+
 var score = 0;
 
 function playGame() {
     startBtn.classList.add('hide');
     nextBtn.classList.remove('hide');
     questionCont.classList.remove('hide');
-
-    // shuffle = Questions.sort(() => Math.random() * Questions.length);
-    // score = 0;
     iterate();
 };
 
 function iterate() {
-
+    
     const question = document.getElementById("question");
 
     question.innerText = Questions[id].q;
@@ -111,65 +110,93 @@ function iterate() {
     op1.addEventListener("click", () => {
         selected = op1.value;
         nextBtn.classList.remove('hide');
+        if (selected == 1) {
+            op1.classList.add('correct');
+        } else {
+            op1.classList.add('wrong');
+        }
     })
 
     op2.addEventListener("click", () => {
         selected = op2.value;
         nextBtn.classList.remove('hide');
+        if (selected == 1) {
+            op2.classList.add('correct')
+        } else {
+            op2.classList.add('wrong');
+        }
     })
 
     op3.addEventListener("click", () => {
         selected = op3.value;
         nextBtn.classList.remove('hide');
+        if (selected == 1) {
+            op3.classList.add('correct')
+        } else {
+            op3.classList.add('wrong');
+        }
     })
 
     op4.addEventListener("click", () => {
         selected = op4.value;
         nextBtn.classList.remove('hide');
+        if (selected == 1) {
+            op4.classList.add('correct')
+        } else {
+            op4.classList.add('wrong')
+        }
     })
 
     answer.addEventListener('click', () => {
         if (selected == 1) {
-            // score;
-            answer.style.backgroundColor = "green";
+            score ++;
             console.log('correct');
         } else {
-            answer.style.backgroundColor = "red";
-            // console.log('wrong');
+            console.log('wrong');
         }
     })
-}
-
+};
 
 var id = 0;
 nextBtn.addEventListener("click", () => {
-    answer.style.backgroundColor = "inherit";
-    // questionCounter ++;
+    op1.classList.remove('correct');
+    op2.classList.remove('correct');
+    op3.classList.remove('correct');
+    op4.classList.remove('correct');
+    op1.classList.remove('wrong');
+    op2.classList.remove('wrong');
+    op3.classList.remove('wrong');
+    op4.classList.remove('wrong');
+
+    // answer.style.backgroundColor = "inherit";
     if (id < 5) {
         id++;
         iterate();
     } else {
         return result();
     }
-})
+});
 
 function result() {
     startBtn.classList.add('hide');
     nextBtn.classList.add('hide');
     questionCont.classList.add('hide');
     resultsCont.classList.remove('hide');
+    replay.classList.remove('hide');
     const resultMessage = document.getElementById('result')
     if (score > 3) {
         let resultText = '<span>Akamai! You got <p>' + score + '</p> out of <p>' + Questions.length + '</p></span>';
         resultMessage.innerHTML = resultText;
-    } else if (score < 3) {
+    } else {
         let resultText = '<span>Sorry, try again. You got<p>' + score + '</p> out of <p>' + Questions.length + '</p></span>';
         resultMessage.innerHTML = resultText;
-    } else {
-        let resultText = '<span>debuggie' + score + '</p> out of <p>' + Questions.length + '</p></span>';
-        resultMessage.innerHTML = resultText;
     }
-}
+};
+
+replay.addEventListener ("click", () => {
+        window.location.reload();
+    });
+
 
 
 

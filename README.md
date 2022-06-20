@@ -8,6 +8,7 @@
 - results page: 3 or more correct answers will result in a win, otherwise player will be prompted to try again.
 - replay button on the results page will start the game over
 
+--hula girl image: https://www.animatedimages.org/
 ## Game requirements
 - This game should be winnable or it should keep score (whichever makes more sense)
 - When a player wins or loses, the game status and/or score should display visually to the player in a way that does not rely on console.logs or alerts
