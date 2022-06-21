@@ -5,7 +5,7 @@ const answer = document.getElementById('choose');
 var btn = document.getElementsByClassName('btn');
 const resultsCont = document.getElementById('final_result');
 const replay = document.getElementById('replay');
-
+const image = document.getElementById('img');
 startBtn.addEventListener('click', playGame);
 
 const Questions = [{
@@ -80,6 +80,7 @@ function playGame() {
     startBtn.classList.add('hide');
     nextBtn.classList.remove('hide');
     questionCont.classList.remove('hide');
+    image.classList.add('hide');
     iterate();
 };
 
@@ -196,7 +197,3 @@ function result() {
 replay.addEventListener ("click", () => {
         window.location.reload();
     });
-
-
-
-

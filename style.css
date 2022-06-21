@@ -21,6 +21,9 @@ body {
     background-position: center;
     background-size: cover;
 }
+.hula{
+    height:175%;
+}
 
 .container {
     background: rgba(52, 130, 158, 0.3);
@@ -61,7 +64,17 @@ body {
     padding: 5px 10px;
 }
 
-.start, .next {
+.start {background-color:rgb(98, 164, 197);
+    position: relative;
+    bottom: -100px;
+    border: 2px solid;
+    padding: 10px 40px;
+    border-radius: 12px;
+    font-size: 40px;
+    font-weight:bold;
+    box-shadow: 0 4px rgba(46, 107, 138, 0.971);
+}
+ .next {
     background-color:rgb(98, 164, 197);
     position: relative;
     bottom: -340px;
